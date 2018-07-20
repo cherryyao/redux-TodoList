@@ -13,7 +13,8 @@ class App extends Component {
 
     this.state = {
       todos: [],
-      statusOfList: Todo.ALL
+      statusOfList: Todo.ALL,
+      
     };
   }
 
@@ -25,13 +26,17 @@ class App extends Component {
 
   add(event) {
     if (event.keyCode === 13) {
-      this.todosAPI.add(new Todo(this.refs.newItem.value));
-      const todos = this.deepCopy(
-        this.todosAPI.filerByStatus(this.state.statusOfList)
-      );
-      this.setState({ todos });
+      this.props.add(this.refs.newItem.value)
+      console.log(this.props)
+      // this.todosAPI.add(addItem);
+      //  console.log(this.todosAPI.todos)
+      //  console.log(this.state.todos)
+      // const todos = this.deepCopy(
+      //   this.todosAPI.filerByStatus(this.state.statusOfList)
+      // );
+      // this.setState({ todos });
       this.refs.newItem.value = '';
-      console.log(todos);
+      //console.log(todos);
     }
   }
 
@@ -72,6 +77,7 @@ class App extends Component {
             <em>Simple Todo List with adding and filter by diff status.</em>
           </p>
         </div>
+
         <div>
           <input
             className="input-text"
@@ -83,10 +89,10 @@ class App extends Component {
             Add
           </div>
         </div>
+
         <div>
           <ol>
             {(() => {
-              console.log(this.props.todos)
               return this.props.todos.map(item => (
                 <TodoItem
                   item={item}
@@ -100,6 +106,7 @@ class App extends Component {
             })()}
           </ol>
         </div>
+
         <div>
           <ul className="filters">
             <li>
@@ -140,6 +147,7 @@ class App extends Component {
             </li>
           </ul>
         </div>
+
       </div>
     );
   }

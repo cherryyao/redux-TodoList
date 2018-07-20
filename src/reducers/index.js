@@ -17,6 +17,13 @@ export default(state = {
             const newState = [...action.todos]
             return newState
         }
+        case 'ADD':{
+          //const newState = [...state]
+          const newState = JSON.parse(JSON.stringify(state));
+          const a = newState.todos.push(action.todo)          
+          return newState
+           
+        }
         default:
         return state
     }

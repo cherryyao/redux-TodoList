@@ -4,6 +4,7 @@ const todosAPI = {
   todos: [],
   add(item) {
     this.todos.push(item);
+    console.log(item);
   },
   filerByStatus(status) {
     if (status === Todo.ALL) {
